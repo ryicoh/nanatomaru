@@ -10,13 +10,15 @@ services:
       - 3306
     environment:
       MYSQL_DATABASE: nanatomaru
-      MYSQL_ROOT_PASSWORD: "password"
+      MYSQL_ROOT_PASSWORD: "mikichandaisuki"
     volumes:
       - data:/var/lib/mysql
+    restart: always
   app:
     build: .
     links:
       - db
     tty: true
+    restart: always
 volumes:
   data:
