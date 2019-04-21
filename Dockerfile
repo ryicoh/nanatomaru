@@ -2,6 +2,7 @@ FROM ruby:2.5-alpine
 
 WORKDIR /app
 COPY . .
+COPY root /var/spool/cron/crontabs/root
 
 RUN apk update && \
     apk add mysql \
@@ -20,10 +21,8 @@ RUN apk update && \
             tzdata \
             yaml \
             yaml-dev \
-            bash \
             zlib-dev \
             build-base && \
-    echo "0\t*\t*\t*\t* ruby /app/app.rb" >> /var/spool/cron/crontabs/root && \
     cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
     apk del tzdata && \
     bundle
